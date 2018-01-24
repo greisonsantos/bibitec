@@ -1,0 +1,11 @@
+{
+    "name": "greis_000/bibitec",
+    "description": "sistema de bibliioteca",
+    "authors": [
+        {
+            "name": "greison santos",
+            "email": "greisonsantos03@gmail.com"
+        }
+    ],
+    "require": {}
+}

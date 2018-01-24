@@ -1,0 +1,43 @@
+
+.menu{
+
+	background: black;
+	padding: 25px 20px 30px 30px;
+}
+
+
+ a:link, a:visited, a:active {
+	text-decoration:none;
+	}
+
+#fundo a:hover {
+	/*text-decoration: underline; */
+	color: white;
+	background: gray;
+	}
+
+
+.footer{
+	/*background: #696969;*/
+	height: 50px;
+	background:#34363a;
+    padding: 20px 10px 10px 10px;
+    color: white;
+
+}
+
+.img{
+
+   padding: 10px 30px 5px 50px;
+   left: 20px;
+}
+
+/*.img2{
+
+   padding: 10px 30px 10px 10px;
+   left: 10px;
+   height: 100px;
+   width: 10px;
+
+}
+*/

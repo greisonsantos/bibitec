@@ -1,0 +1,19 @@
+ a:link, a:visited, a:active {
+	text-decoration:none;
+	}
+
+.fundo{
+	/*text-decoration: underline; */
+	color: blue;
+	background: #708090;
+	padding: 10px 20px 10px 20px; 
+	margin-left: 60px; 
+	}
+
+body{
+    padding:10px;
+}
+
+.show-on-hover:hover > ul.dropdown-menu {
+    display: block;    
+}
