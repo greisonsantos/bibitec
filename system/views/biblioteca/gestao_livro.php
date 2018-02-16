@@ -3,13 +3,13 @@
 <head>
 	<title></title>
 
-   <link rel="stylesheet" href="../../bootstrap/font-awesome/css/font-awesome.min.css" />
+   <link rel="stylesheet" href="../../../bootstrap/font-awesome/css/font-awesome.min.css" />
 
-   <link rel="stylesheet" href="../../bootstrap/css/bootstrap-template.min.css" />
+   <link rel="stylesheet" href="../../../bootstrap/css/bootstrap-template.min.css" />
 
 
-   <link rel="stylesheet" href="../../css/system/template.css">
-   <link rel="stylesheet" href="../../css/system/system.css">
+   <link rel="stylesheet" href="../../../css/system/template.css">
+   <link rel="stylesheet" href="../../../css/system/system.css">
   
 </head>
 <body>
@@ -55,13 +55,13 @@
             <ul class="nav navbar-nav side-nav">
 
                 <li>
-                    <a href="../index.php" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-home fa-5x"></i> Home<i class="pull-right"></i></a>
+                    <a href="../../index.php" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-home fa-5x"></i> Home<i class="pull-right"></i></a>
                 </li>
                 <li>
-                    <a href="#" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-book fa-5x"></i> Biblioteca <i class=" pull-right"></i></a>
+                    <a href="gestao_livro.php" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-book fa-5x"></i> Biblioteca <i class=" pull-right"></i></a>
                 </li>
                 <li>
-                    <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-users fa-5x"></i>  User<i class="pull-right"></i></a>
+                    <a href="../users/gestao_usuario.php" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-users fa-5x"></i>  User<i class="pull-right"></i></a>
                 </li>
                 <li>
                     <a href="investigaciones/favoritas"><i class="fa fa-fw fa-history fa-5x"></i>  Emprestimos</a>
@@ -90,7 +90,7 @@
      <div class="row">
       <div class="col-md-12">
         <div class="col-md-6">
-            <a href="cadastro.php">  
+            <a href="cadastro_livro.php">  
               <div class="col-md-8 col-xs-6  fundo">
                <i class="fa fa-plus fa-5x"></i>
                <h4 class="text-center"> Cadastrar Livro</h4>
@@ -99,7 +99,7 @@
    </div>
 
    <div class="col-md-6" >
-    <a href="entrada.php">  
+    <a href="consultar_livro.php">  
       <div class="col-md-8 col-xs-6 fundo" >
         <i class="fa fa-search fa-5x"></i>
         <h4 class="text-center">Consultar Acervo</h4>
