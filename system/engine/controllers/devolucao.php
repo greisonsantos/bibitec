@@ -4,23 +4,20 @@
 	
 
 	//parte1
+	
 	$id = $_POST['id'];
-	$nome = $_POST['nome'];
-	$email = $_POST['email'];
-	$cpf = $_POST['cpf'];
-	$endereco = $_POST['endereco'];
-	$cidade = $_POST['cidade'];
-	$estado = $_POST['estado'];
-	$telefone = $_POST['telefone'];
-	$senha = $_POST['senha'];
+	$data_devolucao = $_POST['data_devolucao'];
+	$fk_cliente = $_POST['fk_cliente'];
+	$fk_livro = $_POST['fk_livro'];
+	$responsavel = $_POST['responsavel'];
 	
 	
 	//parte2
 	$action = $_POST['action'];
 	
 	//parte3
-	$Item = new Funcionario();
-	$Item->SetValues($id, $nome, $email, $cpf, $endereco, $cidade, $estado, $telefone, password_hash($senha,PASSWORD_DEFAULT)); 
+	$Item = new Devolucao();
+	$Item->SetValues($id, $data_devolucao, $fk_cliente, $fk_livro, $responsavel); 
 	
 	
 		

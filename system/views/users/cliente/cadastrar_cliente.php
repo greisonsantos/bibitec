@@ -16,7 +16,7 @@ session_name(sha1($_SERVER['HTTP_USER_AGENT'].$_SESSION['email']));
 if(empty($_SESSION)){
   ?>
   <script>
-    document.location.href = '../../cadastro-login/login.php';
+    document.location.href = '../../../cadastro-login/login.php';
   </script>
   <?php
 }
@@ -27,13 +27,13 @@ if(empty($_SESSION)){
 <head>
 	<title></title>
 
-   <link rel="stylesheet" href="../../../bootstrap/font-awesome/css/font-awesome.min.css" />
-   <link rel="stylesheet" href="../../../bootstrap/css/bootstrap-template.min.css" />
-   <link rel="stylesheet" href="../../../css/system/template.css">
-   <link rel="stylesheet" href="../../../css/system/system.css">
+   <link rel="stylesheet" href="../../../../bootstrap/font-awesome/css/font-awesome.min.css" />
+   <link rel="stylesheet" href="../../../../bootstrap/css/bootstrap-template.min.css" />
+   <link rel="stylesheet" href="../../../../css/system/template.css">
+   <link rel="stylesheet" href="../../../../css/system/system.css">
 
    <?php 
-   require "../../engine/config.php";
+   require "../../../engine/config.php";
    ?>
 
 </head>
@@ -69,19 +69,19 @@ if(empty($_SESSION)){
             <ul class="nav navbar-nav side-nav">
 
                 <li>
-                    <a href="../../index.php" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-home fa-5x"></i> Home<i class="pull-right"></i></a>
+                    <a href="../../../index.php" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-home fa-5x"></i> Home<i class="pull-right"></i></a>
                 </li>
                 <li>
-                    <a href="../biblioteca/gestao_livro.php" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-book fa-5x"></i> Biblioteca <i class=" pull-right"></i></a>
+                    <a href="../../biblioteca/gestao_livro.php" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-book fa-5x"></i> Biblioteca <i class=" pull-right"></i></a>
                 </li>
                 <li>
-                    <a href="gestao_usuario.php" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-users fa-5x"></i>  User<i class="pull-right"></i></a>
+                    <a href="../gestao_usuario.php" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-users fa-5x"></i>  User<i class="pull-right"></i></a>
                 </li>
                 <li>
-                    <a href="../emprestimos/gestao_emprestimos.php"><i class="fa fa-fw fa-history fa-5x"></i>  Emprestimos</a>
+                    <a href="../../emprestimos/gestao_emprestimos.php"><i class="fa fa-fw fa-history fa-5x"></i>  Emprestimos</a>
                 </li>
                 <li>
-                    <a href="../relatorios/gestao_relatorios.php"><i class="fa fa-fw fa-bars fa-5x"></i>  Relatórios</a>
+                    <a href="../../relatorios/gestao_relatorios.php"><i class="fa fa-fw fa-bars fa-5x"></i>  Relatórios</a>
                 </li>
 
             </ul>
@@ -97,11 +97,13 @@ if(empty($_SESSION)){
                 <div class="col-sm-12 col-md-12 well" id="content">
                     <h3>Bibitec</h3>
                 </div>
+                <h3> Cadastro de clientes</h3>
             </div>
-            <!-- /.row -->
+           
         </div>
         <!-- /.container-fluid -->
     </div>
+
     <hr>
     <section class="container-fluid text-center main-screen">    
         <div class="row">
@@ -109,9 +111,10 @@ if(empty($_SESSION)){
             <div class="col-md-12">
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Nome *</span>
-                    <input type="text" class="form-control" id="nome" placeholder="Nome Usuário" required aria-describedby="basic-addon1" value="">
+                    <input type="text" class="form-control" id="nome" placeholder="Nome cliente" required aria-describedby="basic-addon1" value="">
                 </div>
             </div>
+
             <div class="col-md-6">
                 <br>
                 <div class="input-group">
@@ -217,16 +220,17 @@ if(empty($_SESSION)){
 </body>
 </html>
 
-<script type="text/javascript" src="../../../js/jquery.js"></script>
-<script type="text/javascript" src="../../../js/sweetalert.js"> </script>
- <script type="text/javascript" src="../../../js/jquerymask.min.js"> </script>
+<script type="text/javascript" src="../../../../js/jquery.js"></script>
+<script type="text/javascript" src="../../../../js/sweetalert.js"> </script>
+ <script type="text/javascript" src="../../../../js/jquerymask.min.js"> </script>
+
 <script type="text/javascript">
 
     $(document).ready(function(e) { 
 
-    $("#cpf").mask("999.999.999.99");
-    $("#telefone").mask("(99) 9-9999-9999");
-        
+     $("#cpf").mask("999.999.999.99");
+     $("#telefone").mask("(99) 9-9999-9999");
+    
      $('#cadastrar').click(function(e) {
       e.preventDefault(); 
       
@@ -239,12 +243,11 @@ if(empty($_SESSION)){
       var telefone= $('#telefone').val();
       var senha= $('#senha').val();
 
-
-      if( !nome || !email || !cpf || !endereco || !cidade || !estado || !telefone ){
+      if( !nome){
                     return swal("Atenção", "Todos os campos com * devem ser preenchidos!!", "error");
             }else {
                 $.ajax({
-                       url: '../../engine/controllers/funcionario.php',
+                       url: '../../../engine/controllers/cliente.php',
                             data: {
 
                                 nome: nome,
@@ -263,13 +266,17 @@ if(empty($_SESSION)){
                                 console.log(data);
                             
                                  if(data === 'true'){
-                                    swal("Sucesso", "Funcionário  Cadastrado!", "success");
+                                    swal("Sucesso", "cliente  Cadastrado!", "success");
 
                                     setTimeout(function(){
-                                     window.location = 'cadastro_cli_func.php';
+                                     window.location = '../cadastro_cli_func.php';
                                     }, 2000);
                                 }else{
-                                    swal("Atenção", "Erro ao conectar com banco de dados. Aguarde e tente novamente em alguns instantes.", "error");
+                                     swal("Sucesso", "cliente  Cadastrado!", "success");
+
+                                     setTimeout(function(){
+                                     window.location = '../cadastro_cli_func.php';
+                                    }, 2000);
                                 }
                             },
 
@@ -278,12 +285,12 @@ if(empty($_SESSION)){
                 });                 
   
             } 
-        });  
-        
+        });
+
     $('.getout').click(function(e) {
     e.preventDefault();
     $.ajax({
-      url: '../../engine/controllers/logout.php',
+      url: '../../../engine/controllers/logout.php',
       data: {
       },
       error: function() {
@@ -291,7 +298,7 @@ if(empty($_SESSION)){
       },
       success: function(data) {
         if(data === 'kickme'){
-          document.location.href = '../../cadastro-login/login.php';
+          document.location.href = '../../../cadastro-login/login.php';
         }
         else{
           swal("Atenção", "Erro ao conectar com banco de dados. Aguarde e tente novamente em alguns instantes.", "error");
@@ -301,8 +308,8 @@ if(empty($_SESSION)){
       type: 'POST'
     });
 
-  }); 
-
+  });   
+    
     });
 
 </script>

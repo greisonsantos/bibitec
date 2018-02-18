@@ -6,6 +6,9 @@
    
    require_once "bd/banco.php";
    require_once "classes/livros.php";
-   require_once"classes/funcionario.php";
+   require_once "classes/funcionario.php";
+   require_once "classes/cliente.php";
+   require_once "classes/emprestimos.php";
+   require_once "classes/devolucao.php";
 
 ?>

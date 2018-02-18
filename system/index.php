@@ -1,3 +1,33 @@
+<?php
+$showerros = true;
+if($showerros) {
+  ini_set("display_errors", $showerros);
+  error_reporting(E_ALL ^ E_NOTICE ^ E_STRICT);
+}
+
+session_start();
+// Inicia a sessão
+
+session_name(sha1($_SERVER['HTTP_USER_AGENT'].$_SESSION['email']));
+// Sempre usará nome de sessão diferente
+// Estou concatenando informações sobre o local de onde o acesso está sendo feito + email do user
+// e criptografando com sha1
+
+if(empty($_SESSION)){
+  ?>
+  <script>
+    document.location.href = 'cadastro-login/login.php';
+  </script>
+  <?php
+}
+ 
+
+require_once "engine/config.php";
+?>
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,22 +65,11 @@
       </div>
       <!-- Top Menu Items -->
       <ul class="nav navbar-right top-nav">
-        <li><a href="#" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Stats"><i class="fa fa-bar-chart-o"></i>
-        </a>
-      </li> 
 
       <li class="btn-group show-on-hover">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin User <b class="fa fa-angle-down" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></b></a>
+        <a href="#" class="dropdown-toggle getout" data-toggle="dropdown"><h5>SAIR</h5> <b class="fa fa-angle-down" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></b></a>
 
-        <ul class="dropdown-menu">
-
-          <li><a href="#"><i class=" dropdown-item fa fa-fw fa-user"></i> Editar Perfil</a></li>
-          <li><a href="#"><i class="fa fa-fw fa-cog"></i> Esqueci Minha Senha</a></li>
-          <li class="divider"></li>
-          <li><a href="#"><i class="fa fa-fw fa-power-off"></i> Logout</a></li>
-        </ul>
       </li>
-
     </ul>
     <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 
@@ -71,7 +90,7 @@
         </li>
 
         <li>
-          <a href="views/emprestimos/gestao_emprestimos.php"><i class="fa fa-fw fa-bars fa-5x"></i>  Relatórios</a>
+          <a href="views/relatorios/gestao_relatorios.php"><i class="fa fa-fw fa-bars fa-5x"></i>  Relatórios</a>s
         </li>
       </ul>
     </div>
@@ -82,8 +101,9 @@
       <!-- Page Heading -->
       <div class="row" id="main" >
         <div class="col-sm-12 col-md-12 well" id="content">
-          <h1>Bibitec</h1>
+          <h1>BibiTec</h1>
         </div>
+        <h1 class="text-center">Gestão de Biblioteca</h1>
       </div>
       <!-- /.row -->
     </div>
@@ -126,7 +146,7 @@
  </div>
 
  <div class="col-md-6">
-  <a href="relatorio/" >  
+  <a href="views/relatorios/gestao_relatorios.php" >  
     <div class="col-md-8 col-xs-6 fundo">
      <i class="fa fa-bars fa-5x"></i>
      <h4 class="text-center">Relatório </h4>
@@ -139,3 +159,36 @@
 
 </body>
 </html>
+
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/sweetalert.js"> </script>
+<script type="text/javascript" src="../js/toastr.min.js"> </script>
+
+<script type="text/javascript">
+
+$(document).ready(function(e) { 
+  $('.getout').click(function(e) {
+    e.preventDefault();
+    $.ajax({
+      url: 'engine/controllers/logout.php',
+      data: {
+      },
+      error: function() {
+        swal("Atenção", "Erro na conexão com o servidor. Tente novamente em alguns segundos.", "error");
+      },
+      success: function(data) {
+        if(data === 'kickme'){
+          document.location.href = 'cadastro-login/login.php';
+        }
+        else{
+          swal("Atenção", "Erro ao conectar com banco de dados. Aguarde e tente novamente em alguns instantes.", "error");
+        }
+      },
+
+      type: 'POST'
+    });
+
+  });
+});
+
+</script>

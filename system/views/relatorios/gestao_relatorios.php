@@ -22,50 +22,50 @@ if(empty($_SESSION)){
 }
  ?>
 
- 
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+    <title></title>
 
-   <link rel="stylesheet" href="../../../bootstrap/font-awesome/css/font-awesome.min.css" />
+ <link rel="stylesheet" href="../../../bootstrap/font-awesome/css/font-awesome.min.css" />
 
-   <link rel="stylesheet" href="../../../bootstrap/css/bootstrap-template.min.css" />
+ <link rel="stylesheet" href="../../../bootstrap/css/bootstrap-template.min.css" />
 
 
-   <link rel="stylesheet" href="../../../css/system/template.css">
-   <link rel="stylesheet" href="../../../css/system/system.css">
-  
+ <link rel="stylesheet" href="../../../css/system/template.css">
+ <link rel="stylesheet" href="../../../css/system/system.css">
+ 
 </head>
 <body>
-    <div id="throbber" style="display:none; min-height:120px;"></div>
-    <div id="noty-holder"></div>
-    <div id="wrapper">
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="http://cijulenlinea.ucr.ac.cr/dev-users/">
-                    <img src="http://placehold.it/200x50&text=LOGO" alt="LOGO"">
-                </a>
-            </div>
-            <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
+  <div id="throbber" style="display:none; min-height:120px;"></div>
+  <div id="noty-holder"></div>
+  <div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://cijulenlinea.ucr.ac.cr/dev-users/">
+          <img src="http://placehold.it/200x50&text=LOGO" alt="LOGO"">
+        </a>
+      </div>
+      <!-- Top Menu Items -->
+      <ul class="nav navbar-right top-nav">
 
       <li class="btn-group show-on-hover">
         <a href="#" class="dropdown-toggle getout" data-toggle="dropdown"><h5>SAIR</h5> <b class="fa fa-angle-down" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></b></a>
 
       </li>
     </ul>
-        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+    <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 
-         <div class="collapse navbar-collapse navbar-ex1-collapse">
+     <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
 
                 <li>
@@ -75,7 +75,7 @@ if(empty($_SESSION)){
                     <a href="../biblioteca/gestao_livro.php" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-book fa-5x"></i> Biblioteca <i class=" pull-right"></i></a>
                 </li>
                 <li>
-                    <a href="gestao_usuario.php" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-users fa-5x"></i>  User<i class="pull-right"></i></a>
+                    <a href="../users/gestao_usuario.php" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-users fa-5x"></i>  User<i class="pull-right"></i></a>
                 </li>
                 <li>
                     <a href="../emprestimos/gestao_emprestimos.php"><i class="fa fa-fw fa-history fa-5x"></i>  Emprestimos</a>
@@ -88,45 +88,48 @@ if(empty($_SESSION)){
         </div>
         <!-- /.n
         <!-- /.navbar-collapse -->
-    </nav>
+      </nav>
 
-    <div id="page-wrapper">
+      <div id="page-wrapper">
         <div class="container-fluid">
-            <!-- Page Heading -->
-            <div class="row" id="main" >
-                <div class="col-sm-12 col-md-12 well" id="content">
-                    <h1>Bibitec</h1>
-                </div>
+          <!-- Page Heading -->
+          <div class="row" id="main" >
+            <div class="col-sm-12 col-md-12 well" id="content">
+              <h3>Bibitec</h3>
             </div>
-            <!-- /.row -->
+          </div>
+          <!-- /.row -->
         </div>
         <!-- /.container-fluid -->
-    </div>
-    <!-- /#page-wrapper -->
-    <hr>
-    <section class="container-fluid text-center main-screen">    
-     <div class="row">
-      <div class="col-md-12">
-        <div class="col-md-6">
-            <a href="cadastro_cli_func.php">  
+      </div>
+      <!-- /#page-wrapper -->
+      <hr>
+      <section class="container-fluid text-center main-screen">    
+       <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-6">
+            <a href="emprestimos.php">  
               <div class="col-md-8 col-xs-6  fundo">
-               <i class="fa fa-plus fa-5x"></i>
-               <h4 class="text-center"> Cadastrar Usuários</h4>
-           </div>
-       </a>    
-   </div>
+               <i class="fa fa-history fa-5x"></i>
+               <h4 class="text-center"> Hístórico de  Emprestimo</h4>
+             </div>
+           </a>    
+         </div>
 
-   <div class="col-md-6" >
-    <a href="consultar_cli_func.php">  
-      <div class="col-md-8 col-xs-6 fundo" >
-        <i class="fa fa-search fa-5x"></i>
-        <h4 class="text-center">Consultar Usuarios</h4>
+         <div class="col-md-6" >
+          <a href="devolucoes.php">  
+            <div class="col-md-8 col-xs-6 fundo" >
+              <i class="fa fa-history fa-5x"></i>
+              <h4 class="text-center">Histórico de Devolução</h4>
+            </div>
+          </a>    
+        </div>
+      </div>
     </div>
-</a>    
+    <br>
+
+  </div>
 </div>
-</div>
-</div>
-<br><br>
 
 </section>
 
@@ -135,12 +138,11 @@ if(empty($_SESSION)){
 
 <script type="text/javascript" src="../../../js/jquery.js"></script>
 <script type="text/javascript" src="../../../js/sweetalert.js"> </script>
-<script type="text/javascript" src="../../../js/jquerymask.min.js"> </script>
 <script type="text/javascript">
 
-    $(document).ready(function(e) { 
+    $(document).ready(function(e) {
 
-   $('.getout').click(function(e) {
+  $('.getout').click(function(e) {
     e.preventDefault();
     $.ajax({
       url: '../../engine/controllers/logout.php',
@@ -161,6 +163,8 @@ if(empty($_SESSION)){
       type: 'POST'
     });
 
-   }); 
-
-});
+  });  
+    
+    });
+   
+</script>

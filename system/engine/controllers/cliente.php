@@ -4,29 +4,32 @@
 	
 
 	//parte1
-	$id= $_POST['id'];
-	$isbn = $_POST['isbn'];
-	$titulo = $_POST['titulo'];
-	$autor = $_POST['autor'];
-	$edicao = $_POST['edicao'];
-	$editora = $_POST['editora'];
-	$data_edicao = $_POST['data_edicao'];
-	$status=$_POST['status'];
+	
+	$id = $_POST['id'];
+	$nome = $_POST['nome'];
+	$email = $_POST['email'];
+	$cpf = $_POST['cpf'];
+	$endereco = $_POST['endereco'];
+	$cidade = $_POST['cidade'];
+	$estado = $_POST['estado'];
+	$telefone = $_POST['telefone'];
+	$senha = $_POST['senha'];
 	
 	
 	//parte2
 	$action = $_POST['action'];
 	
 	//parte3
-	$Item = new Livros();
-	$Item->SetValues($id, $isbn, $titulo, $autor, $edicao, $editora, $data_edicao, $status); 
+	$Item = new Cliente();
+	$Item->SetValues( $id, $nome, $email, $cpf, $endereco, $cidade, $estado, $telefone, password_hash($senha,PASSWORD_DEFAULT)); 
 	
 	
 		
 	//parte4
 	switch($action) {
 		case 'create':
-				
+			
+			
 			$res = $Item->Create();
 			if ($res === NULL) {
 				$res = "true";
@@ -72,30 +75,27 @@
 			
 		
 		break;	
-		
-		case 'buscar_livro':
 
-			$liv= new Livros();
-            $liv= $liv->Read_titulo($titulo);
 
-			if (!$liv) {
+    case 'buscar_cliente':
+
+			$cli= new Cliente();
+            $cli= $cli->Read_cpf($cpf);
+
+			if (!$cli) {
 				$res['res'] = 'false';
 			} else {
 				$res['res'] = 'true';
-				$res['id_liv']= $liv['id'];
-				$res['titulo']= $liv['titulo'];
-				$res['status']= $liv['status'];
-				$res['isbn']= $liv['isbn'];
-				$res['autor']= $liv['autor'];
-				$res['edicao']= $liv['edicao'];
-				$res['editora']= $liv['editora'];
-				$res['data_edicao']= $liv['data_edicao'];
+				$res['nome_cli']= $cli['nome'];
+				$res['id_cli']= $cli['id'];
 
 				
 			}
 			echo json_encode($res);
 		break;
-		
-		
+
+
 	}
 ?>
+
+

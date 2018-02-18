@@ -1,3 +1,28 @@
+<?php
+$showerros = true;
+if($showerros) {
+  ini_set("display_errors", $showerros);
+  error_reporting(E_ALL ^ E_NOTICE ^ E_STRICT);
+}
+
+session_start();
+// Inicia a sessão
+
+session_name(sha1($_SERVER['HTTP_USER_AGENT'].$_SESSION['email']));
+// Sempre usará nome de sessão diferente
+// Estou concatenando informações sobre o local de onde o acesso está sendo feito + email do user
+// e criptografando com sha1
+
+if(empty($_SESSION)){
+  ?>
+  <script>
+    document.location.href = '../../cadastro-login/login.php';
+  </script>
+  <?php
+}
+ ?>
+
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,23 +58,12 @@
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
-                <li><a href="#" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Stats"><i class="fa fa-bar-chart-o"></i>
-                </a>
-            </li> 
 
-            <li class="btn-group show-on-hover">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin User <b class="fa fa-angle-down" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></b></a>
-                
-                <ul class="dropdown-menu">
+      <li class="btn-group show-on-hover">
+        <a href="#" class="dropdown-toggle getout" data-toggle="dropdown"><h5>SAIR</h5> <b class="fa fa-angle-down" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></b></a>
 
-                    <li><a href="#"><i class=" dropdown-item fa fa-fw fa-user"></i> Editar Perfil</a></li>
-                    <li><a href="#"><i class="fa fa-fw fa-cog"></i> Esqueci Minha Senha</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#"><i class="fa fa-fw fa-power-off"></i> Logout</a></li>
-                </ul>
-            </li>
-
-        </ul>
+      </li>
+    </ul>
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 
         <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -60,13 +74,17 @@
                 </li>
                 <li>
                     <a href="gestao_livro.php" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-book fa-5x"></i> Biblioteca <i class=" pull-right"></i></a>
-                </li>P
+                </li>
                 <li>
                     <a href="../users/gestao_usuario.php" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-users fa-5x"></i>  User<i class="pull-right"></i></a>
                 </li>
                 <li>
-                    <a href="investigaciones/favoritas"><i class="fa fa-fw fa-history fa-5x"></i>  Emprestimos</a>
+                    <a href="../emprestimos/gestao_emprestimos.php"><i class="fa fa-fw fa-history fa-5x"></i>  Emprestimos</a>
                 </li>
+                <li>
+                    <a href="../relatorios/gestao_relatorios.php"><i class="fa fa-fw fa-bars fa-5x"></i>  Relatórios</a>
+                </li>
+
             </ul>
         </div>
 
@@ -121,19 +139,25 @@
                                                     <th class="text-center">Isbn </th>
                                                     <th class="text-center">Titulo </th>
                                                     <th class="text-center">Autor </th>
-                                                    <th class="text-center">Quantidade </th>
+                                                    <th class="text-center">Emprestado </th>
                                                     <th class=" text-center">Info</th>
                                                     <!-- <th class=" text-center">Excluir</th> -->
                                                 </thead>
                                                 <tbody>
                                                     <?php
                                                     foreach($livros as $livros){
+
+                                                        if ($livros['status']==0){
+                                                            $emprestado='Não';
+                                                        }else{
+                                                            $emprestado='Sim';
+                                                        } 
                                                         ?>
                                                         <tr>
                                                             <td><?php echo $livros['isbn'];?> </td>
                                                             <td><?php echo $livros['titulo'];?></td>
                                                             <td><?php echo $livros['autor']; ?></td>
-                                                            <td><?php echo '10'?></td>
+                                                            <td><?php echo "$emprestado"?></td>
 
                                                             <td class="text-center DetalhesItem">
                                                                 <a href="detalhes_livro.php?id=<?php echo 
@@ -176,6 +200,8 @@
 
 <script type="text/javascript">
     
+  $(document).ready(function(e) {
+    
     $('#voltar').click(function(e) {
             e.preventDefault();
           window.location = "gestao_livro.php";
@@ -190,5 +216,32 @@
                     $('#loader').load('pesquisar/pesquisa_cadastrado.php', { ValorPesquisa: ValorPesquisa});
                 }
             });
+
+
+
+    $('.getout').click(function(e) {
+    e.preventDefault();
+    $.ajax({
+      url: '../../engine/controllers/logout.php',
+      data: {
+      },
+      error: function() {
+        swal("Atenção", "Erro na conexão com o servidor. Tente novamente em alguns segundos.", "error");
+      },
+      success: function(data) {
+        if(data === 'kickme'){
+          document.location.href = '../../cadastro-login/login.php';
+        }
+        else{
+          swal("Atenção", "Erro ao conectar com banco de dados. Aguarde e tente novamente em alguns instantes.", "error");
+        }
+      },
+
+      type: 'POST'
+    });
+
+  });  
+
+  });  
 
 </script>

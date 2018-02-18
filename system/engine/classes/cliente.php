@@ -1,7 +1,7 @@
 <?php
 	//Declaracao da classe
 	//Nome da classe devera ser o nome da tabela respectiva no banco de dados
-	class Funcionario {
+	class Cliente {
 		
 		//Variaveis da classe
 		//Nome das variaveis devem ser de acordo com as colunas da tabela respectiva no bd
@@ -20,7 +20,7 @@
 		
 		//Funcao que seta uma instancia da classe
 		public function SetValues($id, $nome, $email, $cpf, $endereco, $cidade, $estado, $telefone, $senha) { 
-			$this->id= $id;
+			$this->id = $id;
 			$this->nome = $nome;
 			$this->email = $email;
 			$this->cpf = $cpf;
@@ -39,8 +39,9 @@
 		public function Create() {
 			
 			$sql = "
-				INSERT INTO funcionario 
+				INSERT INTO cliente 
 						  (
+				 		
 				 			nome,
 				 			email,
 				 			cpf,
@@ -52,6 +53,7 @@
 						  )  
 				VALUES 
 					(
+
 				 			'$this->nome',
 				 			'$this->email',
 				 			'$this->cpf',
@@ -84,7 +86,7 @@
 					 t1.telefone,
 					 t1.senha
 				FROM
-					funcionario AS t1
+					cliente AS t1
 				WHERE
 					t1.id  = '$id'
 
@@ -98,7 +100,35 @@
 			$DB->close();
 			return $Data[0]; 
 		}
-		
+
+      
+
+
+		public function Read_cpf($cpf){
+		 $sql = "
+		 SELECT
+					 t1.id,
+					 t1.nome,
+					 t1.email,
+					 t1.cpf,
+					 t1.endereco,
+					 t1.cidade,
+					 t1.estado,
+					 t1.telefone,
+					 t1.senha
+				FROM
+					cliente AS t1
+		        WHERE t1.cpf='$cpf'
+		";
+
+		 $DB = new DB();
+		 $DB->open();
+		 $Data = $DB->fetchData($sql);
+
+		 $DB->close();
+		 return $Data[0]; 
+	    } 
+			
 		
 		//Funcao que retorna um vetor com todos as instancias da classe no BD
 		public function ReadAll() {
@@ -114,7 +144,7 @@
 					 t1.telefone,
 					 t1.senha
 				FROM
-					funcionario AS t1
+					cliente AS t1
 				
 
 			";
@@ -157,7 +187,7 @@
 					 t1.telefone,
 					 t1.senha
 				FROM
-					funcionario AS t1
+					cliente AS t1
 					
 					
 				LIMIT $inicio, $registros;
@@ -175,7 +205,7 @@
 		//Funcao que atualiza uma instancia no BD
 		public function Update() {
 			$sql = "
-				UPDATE funcionario SET
+				UPDATE cliente SET
 				
 				  nome = '$this->nome',
 				  email = '$this->email',
@@ -201,7 +231,7 @@
 		//Funcao que deleta uma instancia no BD
 		public function Delete() {
 			$sql = "
-				DELETE FROM funcionario
+				DELETE FROM cliente
 				WHERE id = '$this->id';
 			";
 			$DB = new DB();
@@ -217,26 +247,9 @@
 			--------------------------------------------------
 			Viewer SPecific methods -- begin 
 			--------------------------------------------------
-
-
 		
 		*/
-		 public function ReadByEmail($email){
-			$sql = "
-				SELECT *
-				FROM
-					funcionario AS t1
-				WHERE
-					t1.email = '$email'
-			";
-			
-			$DB = new DB();
-			$DB->open();
-			$Data = $DB->fetchData($sql);
-			
-			$DB->close();
-			return $Data[0]; 
-		}
+		
 		
 		/*
 			--------------------------------------------------

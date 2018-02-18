@@ -16,12 +16,13 @@ session_name(sha1($_SERVER['HTTP_USER_AGENT'].$_SESSION['email']));
 if(empty($_SESSION)){
   ?>
   <script>
-    document.location.href = '../../cadastro-login/login.php';
+    document.location.href = 'cadastro-login/login.php';
   </script>
   <?php
 }
+ 
  ?>
-
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,7 +57,7 @@ if(empty($_SESSION)){
                 </a>
             </div>
             <!-- Top Menu Items -->
-              <ul class="nav navbar-right top-nav">
+             <ul class="nav navbar-right top-nav">
 
       <li class="btn-group show-on-hover">
         <a href="#" class="dropdown-toggle getout" data-toggle="dropdown"><h5>SAIR</h5> <b class="fa fa-angle-down" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></b></a>
@@ -75,7 +76,7 @@ if(empty($_SESSION)){
                     <a href="../biblioteca/gestao_livro.php" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-book fa-5x"></i> Biblioteca <i class=" pull-right"></i></a>
                 </li>
                 <li>
-                    <a href="gestao_usuario.php" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-users fa-5x"></i>  User<i class="pull-right"></i></a>
+                    <a href="../users/gestao_usuario.php" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-users fa-5x"></i>  User<i class="pull-right"></i></a>
                 </li>
                 <li>
                     <a href="../emprestimos/gestao_emprestimos.php"><i class="fa fa-fw fa-history fa-5x"></i>  Emprestimos</a>
@@ -96,14 +97,14 @@ if(empty($_SESSION)){
                 <div class="col-sm-12 col-md-12 well" id="content">
                     <h3>Bibitec</h3>
                 </div>
-                <h3>Consultar Funcionários</h3>
+                    <h3>Livros Emprestados</h3>
             </div>
         </div>
         <div class="row row-list">
                 <div class="col-lg-4">
                         <br>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="ValorPesquisa" placeholder="Pesquisar por Nome...">
+                            <input type="text" class="form-control" id="ValorPesquisa" placeholder="Pesquisar por Titulo...">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" id="Pesqisar"><span class="glyphicon glyphicon-search"></span></button>
                             </span>
@@ -113,17 +114,18 @@ if(empty($_SESSION)){
                  
     <hr>
     <?php 
-        $user= new Funcionario();
-        $user= $user->ReadAll();
+
+        $livros= new Livros();
+        $livros= $livros->Read_emprestados();
  
     ?>
   
 
     <section class="container-fluid text-center main-screen">    
              <?php 
-                   if(empty($user)) {
+                   if(empty($livros)) {
                ?>
-                   <h4 class="well"> Nenhum Usuario encontrado. </h4>
+                   <h4 class="well"> Nenhum Emprestimo encontrado. </h4>
                     <?php
                 } else {
                     ?>
@@ -136,26 +138,24 @@ if(empty($_SESSION)){
                                         <div class="content table-responsive table-full-width">
                                             <table class="table table-hover table-striped">
                                                 <thead>
-                                                    <th class="text-center">Id </th>
-                                                    <th class="text-center">Nome </th>
-                                                    <th class="text-center">Email</th>
-                                                    <th class="text-center">Telefone </th>
-                                                    <th class=" text-center">Info</th>
-                                                    <!-- <th class=" text-center">Excluir</th> -->
+                                                    <th class="text-center">Isbn </th>
+                                                    <th class="text-center">Titulo </th>
+                                                    <th class="text-center">Autor </th>
+                                                    <th class=" text-center">Detalhes</th>
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                    foreach($user as $user){
+                                                    foreach($livros as $livros){
+
                                                         ?>
                                                         <tr>
-                                                            <td><?php echo $user['id'];?> </td>
-                                                            <td><?php echo $user['nome'];?></td>
-                                                            <td><?php echo $user['email']; ?></td>
-                                                            <td><?php echo $user['telefone']; ?></td>
+                                                            <td><?php echo $livros['isbn'];?> </td>
+                                                            <td><?php echo $livros['titulo'];?></td>
+                                                            <td><?php echo $livros['autor']; ?></td>
 
                                                             <td class="text-center DetalhesItem">
-                                                                <a href="detalhes_funcionario.php?id=<?php echo 
-                                                                $user['id'];?>" style="color: inherit;">
+                                                                <a href="detalhes_devolucao.php?id=<?php echo 
+                                                                $livros['id'];?>" style="color: inherit;">
                                                                 <div style="height:100%; width:100%;">
                                                                     <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
                                                                 </div>
@@ -181,28 +181,32 @@ if(empty($_SESSION)){
               }
              ?>
     </section>
-
-        <div class="col-md-4">
-            <br><br>
-             <button type="button" id="voltar" class="btn btn-info btn-block">Voltar</button>
-        </div>
+ 
 
 </body>
 </html>
 
 <script type="text/javascript" src="../../../js/jquery.js"></script>
 <script type="text/javascript" src="../../../js/sweetalert.js"> </script>
+
 <script type="text/javascript">
+    
+    $('#voltar').click(function(e) {
+            e.preventDefault();
+          window.location = "gestao_livro.php";
+        });
 
+    $('#Pesqisar').click(function(e) {
+                e.preventDefault();
+                var ValorPesquisa = $('#ValorPesquisa').val(); 
+                if(ValorPesquisa === ""){
+                    swal("Alerta", "Digite o Titulo do Livro...", "info");
+                }else{ 
+                    $('#loader').load('pesquisar/pesquisa_cadastrado.php', { ValorPesquisa: ValorPesquisa});
+                }
+            });
 
-
-$(document).ready(function(e) {
-   $('#voltar').click(function(e) {
-      e.preventDefault();
-     window.location = "consultar_cli_func.php";
-   });
-
-  $('.getout').click(function(e) {
+    $('.getout').click(function(e) {
     e.preventDefault();
     $.ajax({
       url: '../../engine/controllers/logout.php',
@@ -223,8 +227,6 @@ $(document).ready(function(e) {
       type: 'POST'
     });
 
-  });  
-
-   });
+  });
 
 </script>

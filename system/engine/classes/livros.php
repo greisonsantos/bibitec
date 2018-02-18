@@ -12,12 +12,13 @@
 		private $edicao;
 		private $editora;
 		private $data_edicao;
+		private $status;
 				
 
 		//setters
 		
 		//Funcao que seta uma instancia da classe
-		public function SetValues($id, $isbn, $titulo, $autor, $edicao, $editora, $data_edicao) { 
+		public function SetValues($id, $isbn, $titulo, $autor, $edicao, $editora, $data_edicao, $status) { 
 			$this->id = $id;
 			$this->isbn = $isbn;
 			$this->titulo = $titulo;
@@ -25,6 +26,7 @@
 			$this->edicao = $edicao;
 			$this->editora = $editora;
 			$this->data_edicao = $data_edicao;
+			$this->status= $status;
 						
 		}
 		
@@ -42,7 +44,8 @@
 				 			autor,
 				 			edicao,
 				 			editora,
-				 			data_edicao
+				 			data_edicao,
+				 			status
 						  )  
 				VALUES 
 					(
@@ -51,7 +54,8 @@
 				 			'$this->autor',
 				 			'$this->edicao',
 				 			'$this->editora',
-				 			'$this->data_edicao'
+				 			'$this->data_edicao',
+				 			'$this->status'
 					);
 			";
 			
@@ -72,7 +76,8 @@
 					 t1.autor,
 					 t1.edicao,
 					 t1.editora,
-					 t1.data_edicao
+					 t1.data_edicao,
+					 t1.status
 				FROM
 					livros AS t1
 				WHERE
@@ -89,7 +94,97 @@
 			return $Data[0]; 
 		}
 		
-		
+        public function Read_emprestados() {
+			$sql = "
+				SELECT
+					 t1.id,
+					 t1.isbn,
+					 t1.titulo,
+					 t1.autor,
+					 t1.edicao,
+					 t1.editora,
+					 t1.data_edicao,
+					 t1.status
+				FROM
+					livros AS t1
+				WHERE
+					t1.status  = '1'
+
+			";
+			
+			
+			$DB = new DB();
+			$DB->open();
+			$Data = $DB->fetchData($sql);
+			$realData;
+			if($Data ==NULL){
+				$realData = $Data;
+			}
+			else{
+				
+				foreach($Data as $itemData){
+					if(is_bool($itemData)) continue;
+					else{
+						$realData[] = $itemData;	
+					}
+				}
+			}
+			$DB->close();
+			return $realData; 
+			
+		}
+
+
+
+		public function Read_titulo($titulo) {
+			$sql = "
+				SELECT
+					 t1.id,
+					 t1.isbn,
+					 t1.titulo,
+					 t1.autor,
+					 t1.edicao,
+					 t1.editora,
+					 t1.data_edicao,
+					 t1.status
+				FROM
+					livros AS t1
+				WHERE
+					t1.titulo like'%$titulo%'
+
+			";
+			
+			
+			$DB = new DB();
+			$DB->open();
+			$Data = $DB->fetchData($sql);
+			
+			$DB->close();
+			return $Data[0]; 
+		}
+
+
+  //       public function Read_titulo($titulo) {
+		// 	$sql = "
+		// 		SELECT * FROM cliente
+  //                INNER JOIN emprestimos ON cliente.id = emprestimos.fk_cliente
+  //                   INNER JOIN  livros ON  livros.id = emprestimos.fk_livro
+  //                      WHERE   livros.titulo like'%titulo%'
+
+		// 	";
+			
+			
+		// 	$DB = new DB();
+		// 	$DB->open();
+		// 	$Data = $DB->fetchData($sql);
+			
+		// 	$DB->close();
+		// 	return $Data[0]; 
+		// }
+ 
+
+
+
 		//Funcao que retorna um vetor com todos as instancias da classe no BD
 		public function ReadAll() {
 			$sql = "
@@ -100,7 +195,8 @@
 					 t1.autor,
 					 t1.edicao,
 					 t1.editora,
-					 t1.data_edicao
+					 t1.data_edicao,
+					 t1.status
 				FROM
 					livros AS t1
 				
@@ -141,7 +237,8 @@
 					 t1.autor,
 					 t1.edicao,
 					 t1.editora,
-					 t1.data_edicao
+					 t1.data_edicao,
+					 t1.status
 				FROM
 					livros AS t1
 					
@@ -168,7 +265,8 @@
 				  autor = '$this->autor',
 				  edicao = '$this->edicao',
 				  editora = '$this->editora',
-				  data_edicao = '$this->data_edicao'
+				  data_edicao = '$this->data_edicao',
+				  status= '$this->status'
 				
 				WHERE id = '$this->id';
 				
@@ -223,6 +321,7 @@
 			$this->edicao;
 			$this->editora;
 			$this->data_edicao;
+			$this->status;
 			
 			
 		}
@@ -236,6 +335,7 @@
 			$this->edicao;
 			$this->editora;
 			$this->data_edicao;
+			$this->status;
 			
 			
 		}

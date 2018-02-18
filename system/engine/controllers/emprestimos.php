@@ -4,23 +4,20 @@
 	
 
 	//parte1
-	$id = $_POST['id'];
-	$nome = $_POST['nome'];
-	$email = $_POST['email'];
-	$cpf = $_POST['cpf'];
-	$endereco = $_POST['endereco'];
-	$cidade = $_POST['cidade'];
-	$estado = $_POST['estado'];
-	$telefone = $_POST['telefone'];
-	$senha = $_POST['senha'];
+	
+    $id= $_POST['id'];
+	$data_emprestimo = $_POST['data_emprestimo'];
+	$fk_cliente = $_POST['fk_cliente'];
+	$fk_livro = $_POST['fk_livro'];
+	$responsavel = $_POST['responsavel'];
 	
 	
 	//parte2
 	$action = $_POST['action'];
 	
 	//parte3
-	$Item = new Funcionario();
-	$Item->SetValues($id, $nome, $email, $cpf, $endereco, $cidade, $estado, $telefone, password_hash($senha,PASSWORD_DEFAULT)); 
+	$Item = new Emprestimos();
+	$Item->SetValues($id, $data_emprestimo, $fk_cliente, $fk_livro, $responsavel); 
 	
 	
 		
@@ -71,11 +68,26 @@
 				$res = 'false';	
 			}
 			echo $res;
-			
-		
+
 		break;	
-		
-		
+   		
+	 //     case 'buscar_cliente':
+
+		// 	$cli= new Emprestimos();
+  //           $cli= $cli->Read_cliente($cpf);
+
+		// 	if (!$cli) {
+		// 		$res['res'] = 'false';
+		// 	} else {
+		// 		$res['res'] = 'true';
+
+		// 		//$res['nome_cli']= $cli['nome'];
+		// 		//$res['id_cli']= $cli['id'];
+
+				
+		// 	}
+		// 	echo json_encode($res);
+		// break;	
 		
 	}
 ?>
