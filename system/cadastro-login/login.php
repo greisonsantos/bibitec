@@ -11,14 +11,15 @@
 <body>
 <br><br><br><br><br>
     <div class="modal-dialog">
-    <div class="modal-content">
+    <br><br><br><br><br>
+    <div class="modal-content login-box ">
         <div class="modal-header">
 
           <h1 class="text-center">Bem Vindo...</h1>
         </div>
          <div class="modal-body">
              <div class="form-group">
-                 <input type="text" id="email_login" class="form-control input-lg" placeholder="Username"/>
+                 <input type="text" id="email_login" class="form-control input-lg" placeholder="E-mail"/>
              </div>
 
              <div class="form-group">

@@ -37,6 +37,9 @@ if(empty($_SESSION)){
   
 </head>
 <body>
+<?php 
+   require "../../engine/config.php";
+?>
     <div id="throbber" style="display:none; min-height:120px;"></div>
     <div id="noty-holder"></div>
     <div id="wrapper">
@@ -58,7 +61,7 @@ if(empty($_SESSION)){
               <ul class="nav navbar-right top-nav">
 
       <li class="btn-group show-on-hover">
-        <a href="#" class="dropdown-toggle getout" data-toggle="dropdown"><h5>SAIR</h5> <b class="fa fa-angle-down" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></b></a>
+        <a href="" class="dropdown-toggle getout" data-toggle="dropdown"><h5>SAIR</h5> <b class="fa fa-angle-down" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></b></a>
 
       </li>
     </ul>
