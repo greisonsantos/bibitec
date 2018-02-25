@@ -28,8 +28,9 @@ if(empty($_SESSION)){
 <head>
 	<title></title>
 
- <link rel="stylesheet" href="../../../bootstrap/font-awesome/css/font-awesome.min.css" />
  <link rel="stylesheet" href="../../../bootstrap/css/bootstrap-template.min.css" />
+ <link rel="stylesheet" href="../../../bootstrap/font-awesome/css/font-awesome.css"/>
+ <link rel="stylesheet" href="../../../bootstrap/js/bootstrap.min.js"/>
  <link rel="stylesheet" href="../../../css/system/template.css">
  <link rel="stylesheet" href="../../../css/system/system.css">
 
@@ -105,7 +106,7 @@ if(empty($_SESSION)){
                         <div class="input-group">
                             <input type="text" class="form-control" id="ValorPesquisa" placeholder="Pesquisar por Titulo...">
                             <span class="input-group-btn">
-                                <button class="btn btn-success" type="button" id="Pesqisar"><span class="glyphicon glyphicon-search"></span></button>
+                                <button class="btn btn-success" type="button" id="Pesquisar"><span class="glyphicon glyphicon-search"></span></button>
                             </span>
                         </div><!-- /input-group -->
                 </div><!-- /.col-lg-6 -->  
@@ -197,6 +198,8 @@ if(empty($_SESSION)){
 
 <script type="text/javascript" src="../../../js/jquery.js"></script>
 <script type="text/javascript" src="../../../js/sweetalert.js"> </script>
+<script type="text/javascript" src="../../../js/bootstrap.js"> </script>
+
 
 <script type="text/javascript">
     
@@ -207,13 +210,18 @@ if(empty($_SESSION)){
           window.location = "gestao_livro.php";
         });
 
-    $('#Pesqisar').click(function(e) {
+    $('#Pesquisar').click(function(e) {
                 e.preventDefault();
-                var ValorPesquisa = $('#ValorPesquisa').val(); 
+                var ValorPesquisa = $('#ValorPesquisa').val();
+
+                alert(ValorPesquisa);
+                
                 if(ValorPesquisa === ""){
                     swal("Alerta", "Digite o Titulo do Livro...", "info");
                 }else{ 
-                    $('#loader').load('pesquisar/pesquisa_cadastrado.php', { ValorPesquisa: ValorPesquisa});
+                    $('#loader').load('pesquisa.php', {
+
+                     ValorPesquisa: ValorPesquisa});
                 }
             });
 

@@ -5,12 +5,13 @@
 	<link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css" />
 	
 	<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="../../css/system/cadastro-login.css">
-
+	<link rel="stylesheet" href="../../css/system/meu_login.css"> 
+<!-- 	<link rel="stylesheet" href="../../css/system/cadastro-login.css">
+ -->
 </head>
 <body>
 	<div class="modal-dialog">
-		<div class="modal-content">
+		<div class="modal-content cadastro-box ">
 			<div class="modal-header">
 				<h1 class="text-center">Bem Vindo!!!</h1>
 			</div>
