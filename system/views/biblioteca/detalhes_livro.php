@@ -209,7 +209,8 @@ $(document).ready(function(e) {
 
   $('#excluir').click(function(e) {
     e.preventDefault();                 
-    var id= $('#id').val(); 
+    var id= $('#id').val();
+
      
    if(confirm(" Realmente Deseja excluir este Livro ?")){
      $.ajax({

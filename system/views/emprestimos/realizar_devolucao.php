@@ -249,7 +249,7 @@ if(empty($_SESSION)){
  
 
             var cpf= $('#ValorPesquisaCli').val();
-            var titulo= $('#ValorPesquisaLiv').val();
+            var titulo= $('#titulo').val();
 
             var id_cli= $('#id_cli').val();
             var id_liv= $('#id_liv').val();
@@ -265,7 +265,7 @@ if(empty($_SESSION)){
    
             var data_devolucao= $('#data_devolucao').val();
     
-            id_cli='1';
+      
             
          alert(responsavel);
          alert(data_devolucao);

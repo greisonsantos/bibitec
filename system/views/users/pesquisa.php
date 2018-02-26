@@ -16,14 +16,11 @@ session_name(sha1($_SERVER['HTTP_USER_AGENT'].$_SESSION['email']));
 if(empty($_SESSION)){
   ?>
   <script>
-    document.location.href = 'cadastro-login/login.php';
+    document.location.href = '../../cadastro-login/login.php';
   </script>
   <?php
 }
- 
  ?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,10 +71,10 @@ if(empty($_SESSION)){
                     <a href="../../index.php" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-home fa-5x"></i> Home<i class="pull-right"></i></a>
                 </li>
                 <li>
-                    <a href="gestao_livro.php" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-book fa-5x"></i> Biblioteca <i class=" pull-right"></i></a>
+                    <a href="../biblioteca/gestao_livro.php" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-book fa-5x"></i> Biblioteca <i class=" pull-right"></i></a>
                 </li>
                 <li>
-                    <a href="../users/gestao_usuario.php" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-users fa-5x"></i>  User<i class="pull-right"></i></a>
+                    <a href="gestao_usuario.php" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-users fa-5x"></i>  User<i class="pull-right"></i></a>
                 </li>
                 <li>
                     <a href="../emprestimos/gestao_emprestimos.php"><i class="fa fa-fw fa-history fa-5x"></i>  Emprestimos</a>
@@ -99,6 +96,7 @@ if(empty($_SESSION)){
                 <div class="col-sm-12 col-md-12 well" id="content">
                     <h1>Bibitec</h1>
                 </div>
+                <h3>Detalhes Funcionários</h3>
             </div>
             <!-- /.row -->
         </div>
@@ -108,96 +106,28 @@ if(empty($_SESSION)){
     <hr>
 
     <?php 
-        $livros= new Livros();
-        $livros= $livros->Read_cli_livro($_GET['id']);
-
+        $func= new Funcionario();
+        $func= $func->Read_nome($_GET['pesquisa']);
       
     ?>
   
 
     <section class="container-fluid text-center main-screen">    
         <div class="row">
-         <h3> Dados do Livro</h3>
-            <input type="hidden" name="id" id="id"  value="<?php echo $livros['id'];?>"> 
+
+            <input type="hidden" name="id" id="id"  value="<?php echo $func['id'];?>"> 
             <div class="col-md-12">
                 <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Titulo do Livro *</span>
-                    <input type="text" class="form-control" id="titulo" aria-describedby="basic-addon1" value="<?php echo $livros[0]['titulo']; ?>" disabled >
+                    <span class="input-group-addon" id="basic-addon1">Nome do Funcionário *</span>
+                    <input type="text" class="form-control" id="titulo" aria-describedby="basic-addon1" value="<?php echo $func['nome']; ?>" disabled >
                 </div>
             </div>
 
             <div class="col-md-6">
                 <br>
                 <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Isbn *</span>
-                    <input type="text" class="form-control" id="isbn" required aria-describedby="basic-addon1" value="<?php echo  $livros[0]['isbn']; ?>" disabled>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <br>
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Autor *</span>
-                    <input type="text" class="form-control" id="autor"  required aria-describedby="basic-addon1" value="<?php echo $livros[0]['autor']; ?>" disabled>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <br>
-                <div class="input-group">
-                    <span class="input-group-addon"  size="2" id="basic-addon1">Edição*</span>
-                    <input type="text" class="form-control" id="edicao" name="edicao"  required aria-describedby="basic-addon1" value="<?php echo $livros[0]['edicao']; ?>" disabled>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <br>
-                <div class="input-group">
-                    <span class="input-group-addon"  size="2" id="basic-addon1">Editora*</span>
-                    <input type="text" class="form-control" id="editora" name="editora"  required aria-describedby="basic-addon1"  value="<?php  echo $livros[0]['editora']; ?>" disabled>
-                </div>
-            </div>    
-
-            <div class="col-md-6">
-                <br>
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Data Edição *</span>
-                    <input type="date" class="form-control" id="data_edicao" aria-describedby="basic-addon1" value="<?php  echo $livros[0]['data_edicao']; ?>" disabled>
-                </div>
-            </div>
-
-         <div class="col-md-6">
-               <br>
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Data Emprestimo *</span>
-                    <input type="text" class="form-control" id="data_edicao" aria-describedby="basic-addon1" value="<?php echo $livros[0]['data_emprestimo']; ?>" disabled>
-                </div>
-          </div>
-        </div>
-
-
-        <div class="row">
-         <h3> Dados do Cliente</h3>
-            <input type="hidden">
-                <div class="col-md-6">
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Nome *</span>
-                    <input type="text" class="form-control" id="nome"  required aria-describedby="basic-addon1" value="<?php echo $livros[0]['nome']; ?>"  disabled >
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Telefone *</span>
-                    <input type="text" class="form-control" id="nome"  required aria-describedby="basic-addon1" value="<?php echo $livros[0]['telefone']; ?>" disabled >
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <br>
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Email *</span>
-                    <input type="text" class="form-control" id="email"  required aria-describedby="basic-addon1" value="<?php echo $livros[0]['email'];?>" disabled>
+                    <span class="input-group-addon" id="basic-addon1">E-mail *</span>
+                    <input type="text" class="form-control" id="email" required aria-describedby="basic-addon1" value="<?php echo $func['email']; ?>" disabled>
                 </div>
             </div>
 
@@ -205,31 +135,43 @@ if(empty($_SESSION)){
                 <br>
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Cpf *</span>
-                    <input type="text" class="form-control" id="cpf" required aria-describedby="basic-addon1" value="<?php echo $livros[0]['cpf']; ?>">
+                    <input type="text" class="form-control" id="cpf"  required aria-describedby="basic-addon1" value="<?php echo $func['cpf']; ?>" disabled>
                 </div>
             </div>
 
             <div class="col-md-6">
                 <br>
                 <div class="input-group">
-                    <span class="input-group-addon"  size="2" id="basic-addon1">Endereço *</span>
-                    <input type="text" class="form-control" id="endereco" name="edenreco"  required aria-describedby="basic-addon1" value="<?php  echo $livros[0]['endereco'];?>" disabled >
+                    <span class="input-group-addon"  size="2" id="basic-addon1">Endereço*</span>
+                    <input type="text" class="form-control" id="endereco" name="edicao"  required aria-describedby="basic-addon1" value="<?php echo $func['endereco']; ?>" disabled>
                 </div>
             </div>
-
-
 
             <div class="col-md-6">
                 <br>
                 <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Cidade *</span>
-                    <input type="text" class="form-control" id="cidade" aria-describedby="basic-addon1" value="<?php  echo $livros[0]['cidade'];?>" disabled >
+                    <span class="input-group-addon"  size="2" id="basic-addon1">Cidade*</span>
+                    <input type="text" class="form-control" id="cidade" name="editora"  required aria-describedby="basic-addon1"  value="<?php echo $func['cidade']; ?>" disabled>
                 </div>
+            </div>    
 
+            <div class="col-md-6">
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Estado *</span>
+                    <input type="text" class="form-control" id="estado" aria-describedby="basic-addon1" value="<?php echo $func['estado']; ?>" disabled>
+                </div>
             </div>
 
-    
-        </div>     
+           <div class="col-md-6">
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Telefone *</span>
+                    <input type="text" class="form-control" id="telefone" aria-describedby="basic-addon1" value="<?php echo $func['telefone']; ?>" disabled>
+                </div>
+            </div>
+        
+        </div>
 
         <div class="row">
 
@@ -238,6 +180,20 @@ if(empty($_SESSION)){
              <button type="button" id="voltar" class="btn btn-info btn-block">Voltar</button>
           </div>
   
+           <div class="col-md-4">
+             <br><br>
+             <a href="editar_funcionario.php?id=<?php echo $func['id']; ?>" style="color: inherit;">
+                 <button type="button" class="btn btn-success btn-block" id="">
+                   <span class="glyphicon" aria-hidden="true"></span> Editar
+                 </button>
+             </a>
+           </div>
+           
+
+           <div class="col-md-4">
+             <br><br>
+             <button type="button" id="excluir" class="btn btn-danger btn-block">Excluir</button>
+           </div>
 
     </div>
 </section>
@@ -254,16 +210,16 @@ if(empty($_SESSION)){
 $(document).ready(function(e) {
    $('#voltar').click(function(e) {
       e.preventDefault();
-     window.location = "emprestimos.php";
+     window.location = "consultar_funcionario.php";
    });
 
   $('#excluir').click(function(e) {
     e.preventDefault();                 
     var id= $('#id').val(); 
      
-   if(confirm(" Realmente Deseja excluir este Livro ?")){
+   if(confirm(" Realmente Deseja excluir este Funcionário?")){
      $.ajax({
-        url: '../../engine/controllers/livros.php',
+        url: '../../engine/controllers/funcionario.php',
        data: {
 
         id : id,
@@ -273,9 +229,9 @@ $(document).ready(function(e) {
       success: function(data){
         if(data === 'true'){
 
-          swal("Sucesso", "Livro Deletado!", "success");
+          swal("Sucesso", "Usuário Deletado!", "success");
           setTimeout(function(){
-            window.location = 'consultar_livro.php';
+            window.location = 'consultar_funcionario.php';
           }, 2000);
 
 
@@ -289,7 +245,7 @@ $(document).ready(function(e) {
    }
  });
 
- $('.getout').click(function(e) {
+   $('.getout').click(function(e) {
     e.preventDefault();
     $.ajax({
       url: '../../engine/controllers/logout.php',
@@ -310,8 +266,7 @@ $(document).ready(function(e) {
       type: 'POST'
     });
 
-  });
-
+  });  
 });
 
 </script>

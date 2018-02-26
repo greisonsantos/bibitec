@@ -106,7 +106,7 @@ if(empty($_SESSION)){
                         <div class="input-group">
                             <input type="text" class="form-control" id="ValorPesquisa" placeholder="Pesquisar por Titulo...">
                             <span class="input-group-btn">
-                                <button class="btn btn-success" type="button" id="Pesquisar"><span class="glyphicon glyphicon-search"></span></button>
+                                <button class="btn btn-success" type="button" id="Pesquisar"><span class="fa fa-search"></span></button>
                             </span>
                         </div><!-- /input-group -->
                 </div><!-- /.col-lg-6 -->  
@@ -164,7 +164,7 @@ if(empty($_SESSION)){
                                                                 <a href="detalhes_livro.php?id=<?php echo 
                                                                 $livros['id'];?>" style="color: inherit;">
                                                                 <div style="height:100%; width:100%;">
-                                                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                                                                    <span class="fa fa-plus-square" aria-hidden="true"></span>
                                                                 </div>
                                                             </a>
                                                         </td>
@@ -214,14 +214,11 @@ if(empty($_SESSION)){
                 e.preventDefault();
                 var ValorPesquisa = $('#ValorPesquisa').val();
 
-                alert(ValorPesquisa);
-                
+               
                 if(ValorPesquisa === ""){
-                    swal("Alerta", "Digite o Titulo do Livro...", "info");
+                    swal("Alerta","Digite o nome desejado...", "info");
                 }else{ 
-                    $('#loader').load('pesquisa.php', {
-
-                     ValorPesquisa: ValorPesquisa});
+                    window.open('pesquisa.php?pesquisa='+ValorPesquisa);
                 }
             });
 

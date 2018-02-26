@@ -98,6 +98,34 @@
 			$DB->close();
 			return $Data[0]; 
 		}
+
+		public function Read_nome($nome) {
+			$sql = "
+				SELECT
+					 t1.id,
+					 t1.nome,
+					 t1.email,
+					 t1.cpf,
+					 t1.endereco,
+					 t1.cidade,
+					 t1.estado,
+					 t1.telefone,
+					 t1.senha
+				FROM
+					funcionario AS t1
+				WHERE
+					t1.nome like '%$nome%'
+
+			";
+			
+			
+			$DB = new DB();
+			$DB->open();
+			$Data = $DB->fetchData($sql);
+			
+			$DB->close();
+			return $Data[0]; 
+		}
 		
 		
 		//Funcao que retorna um vetor com todos as instancias da classe no BD

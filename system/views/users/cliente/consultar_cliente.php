@@ -105,7 +105,7 @@ if(empty($_SESSION)){
                         <div class="input-group">
                             <input type="text" class="form-control" id="ValorPesquisa" placeholder="Pesquisar por Nome...">
                             <span class="input-group-btn">
-                                <button class="btn btn-success" type="button" id="Pesqisar"><span class="glyphicon glyphicon-search"></span></button>
+                                <button class="btn btn-success" type="button" id="Pesquisar"><span class=" fa fa-search"></span></button>
                             </span>
                         </div><!-- /input-group -->
                 </div><!-- /.col-lg-6 -->  
@@ -157,7 +157,7 @@ if(empty($_SESSION)){
                                                                 <a href="detalhes_cliente.php?id=<?php echo 
                                                                 $cli['id'];?>" style="color: inherit;">
                                                                 <div style="height:100%; width:100%;">
-                                                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                                                                    <span class="fa fa-plus-square" aria-hidden="true"></span>
                                                                 </div>
                                                             </a>
                                                         </td>
@@ -201,6 +201,19 @@ $(document).ready(function(e) {
       e.preventDefault();
      window.location = "../consultar_cli_func.php";
    });
+
+   $('#Pesquisar').click(function(e) {
+                e.preventDefault();
+                var ValorPesquisa = $('#ValorPesquisa').val();
+                
+               
+                if(ValorPesquisa === ""){
+                    swal("Alerta","Digite o nome desejado...", "info");
+                }else{ 
+                    window.open('pesquisa.php?pesquisa='+ValorPesquisa);
+                }
+    });
+
   
    $('.getout').click(function(e) {
     e.preventDefault();

@@ -1,16 +1,16 @@
 <?php
 
 //acesso remoto
-    define("DB_HOSTI","localhost"); // host 
-    define("DB_USERNAMEI","id4198664_root"); // username
-    define("DB_PASSWORDI","160597123g"); // password
-    define("DB_DATABASEI","id4198664_bibitec"); // db name
+    // define("DB_HOSTI","localhost"); // host 
+    // define("DB_USERNAMEI","id4198664_root"); // username
+    // define("DB_PASSWORDI","160597123g"); // password
+    // define("DB_DATABASEI","id4198664_bibitec"); // db name
 
 // acesso local
-    // define("DB_HOSTI","localhost"); // host 
-    // define("DB_USERNAMEI","root"); // username
-    // define("DB_PASSWORDI","160597123g"); // password
-    // define("DB_DATABASEI","bibitec"); // db name
+    define("DB_HOSTI","localhost"); // host 
+    define("DB_USERNAMEI","root"); // username
+    define("DB_PASSWORDI","160597123g"); // password
+    define("DB_DATABASEI","bibitec"); // db name
 
     class DB {
         private $dbi;

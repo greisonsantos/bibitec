@@ -246,7 +246,12 @@ if(empty($_SESSION)){
                    }, 2000);
 
                 }else{
-                    swal("Atenção", "Erro ao conectar com banco de dados. Aguarde e tente novamente em alguns instantes.", "error");
+                   swal("Sucesso", "Usuário  Editado!", "success");
+
+                    setTimeout(function(){
+                       window.location = 'consultar_cliente.php';
+                   }, 2000);
+  
                 }
             },
 

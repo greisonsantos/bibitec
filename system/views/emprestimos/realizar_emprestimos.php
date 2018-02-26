@@ -75,7 +75,7 @@ if(empty($_SESSION)){
           <a href="../biblioteca/gestao_livro.php" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-book fa-5x"></i> Biblioteca <i class=" pull-right"></i></a>
         </li>
         <li>
-          <a href="gestao_usuario.php" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-users fa-5x"></i>  User<i class="pull-right"></i></a>
+          <a href="../users/gestao_usuario.php" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-users fa-5x"></i>  User<i class="pull-right"></i></a>
         </li>
         <li>
           <a href="../emprestimos/gestao_emprestimos.php"><i class="fa fa-fw fa-history fa-5x"></i>  Emprestimos</a>
@@ -291,7 +291,7 @@ if(empty($_SESSION)){
        $(this).attr('disabled', true); 
 
             var cpf= $('#ValorPesquisaCli').val();
-            var titulo= $('#ValorPesquisaLiv').val();
+            var titulo= $('#titulo').val();
 
             var id_cli= $('#id_cli').val();
             var id_liv= $('#id_liv').val();

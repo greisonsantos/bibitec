@@ -111,7 +111,7 @@ if(empty($_SESSION)){
             <a href="emprestimos.php">  
               <div class="col-md-8 col-xs-6  fundo">
                <i class="fa fa-history fa-5x"></i>
-               <h4 class="text-center"> Hístórico de  Emprestimo</h4>
+               <h4 class="text-center">  Emprestimo</h4>
              </div>
            </a>    
          </div>
@@ -120,7 +120,7 @@ if(empty($_SESSION)){
           <a href="devolucoes.php">  
             <div class="col-md-8 col-xs-6 fundo" >
               <i class="fa fa-history fa-5x"></i>
-              <h4 class="text-center">Histórico de Devolução</h4>
+              <h4 class="text-center"> Devolução</h4>
             </div>
           </a>    
         </div>

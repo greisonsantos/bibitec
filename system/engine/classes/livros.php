@@ -93,6 +93,34 @@
 			$DB->close();
 			return $Data[0]; 
 		}
+
+		public function Read_nome($nome) {
+			$sql = "
+				SELECT
+					 t1.id,
+					 t1.isbn,
+					 t1.titulo,
+					 t1.autor,
+					 t1.edicao,
+					 t1.editora,
+					 t1.data_edicao,
+					 t1.status
+				FROM
+					livros AS t1
+				WHERE
+					t1.titulo like'%$nome%'
+
+			";
+			
+			
+			$DB = new DB();
+			$DB->open();
+			$Data = $DB->fetchData($sql);
+			
+			$DB->close();
+			return $Data[0]; 
+		}
+
 		
         public function Read_emprestados() {
 			$sql = "
@@ -132,7 +160,42 @@
 			$DB->close();
 			return $realData; 
 			
-		}
+		}  
+        
+
+        public function Read_cli_livro($id) {
+			$sql = "
+				SELECT *FROM 
+				      livros 
+                 INNER JOIN emprestimos ON
+                    livros.id= emprestimos.fk_livro
+                 INNER JOIN cliente ON
+                    cliente.id=emprestimos.fk_cliente
+                  WHERE  livros.id='$id'
+
+			";
+			
+			
+			$DB = new DB();
+			$DB->open();
+			$Data = $DB->fetchData($sql);
+			$realData;
+			if($Data ==NULL){
+				$realData = $Data;
+			}
+			else{
+				
+				foreach($Data as $itemData){
+					if(is_bool($itemData)) continue;
+					else{
+						$realData[] = $itemData;	
+					}
+				}
+			}
+			$DB->close();
+			return $realData; 
+			
+		}  
 
 
 

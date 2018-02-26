@@ -51,8 +51,6 @@ $(document).ready(function(e) {
     var email = $('#email_login').val();
     var senha = $('#senha_login').val();
 
-    
-
       
     if( !email || !senha ) {
      swal("Atenção!", "Todos os campos devem ser preenchidos!", "info");
