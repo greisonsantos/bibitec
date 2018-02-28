@@ -222,6 +222,10 @@ if(empty($_SESSION)){
                             
                                  if(data === 'true'){
                                     swal("Sucesso", "Livro  Cadastrado!", "success");
+
+                                    setTimeout(function(){
+                                     window.location = 'gestao_livro.php';
+                                    }, 2000);
                                 }else{
                                     swal("Atenção", "Erro ao conectar com banco de dados. Aguarde e tente novamente em alguns instantes.", "error");
                                 }

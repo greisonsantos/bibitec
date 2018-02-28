@@ -265,12 +265,6 @@ if(empty($_SESSION)){
    
             var data_devolucao= $('#data_devolucao').val();
     
-      
-            
-         alert(responsavel);
-         alert(data_devolucao);
-         alert("id do cliente e "+id_cli);
-         alert(id_liv);
 
            if  (!titulo){
                  swal("Atenção", "O  Titulo devem ser informado.", "error");

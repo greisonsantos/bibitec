@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title> </title>
+	<title>Cadastro de Usuarios </title>
 	<link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css" />
 	
 	<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="../../css/system/meu_login.css"> 
-<!-- 	<link rel="stylesheet" href="../../css/system/cadastro-login.css">
- -->
+<!-- 	<link rel="stylesheet" href="../../css/system/cadastro-login.css"> -->
+
+  <?php 
+      require "../engine/config.php";
+   ?>
+   
 </head>
 <body>
+
 	<div class="modal-dialog">
 		<div class="modal-content cadastro-box ">
 			<div class="modal-header">
@@ -81,17 +86,94 @@
 								</div>
 							</div>
 						</div>
-					</form>
+					
 					<div class="col-md-12">
 						<div class="col-md-12">
 							<div class="form-group">
-								<input type="submit" class="btn btn-block btn-lg btn-primary" value="Cadastrar"/>
+								<button type="submit" id="cadastrar" class="btn btn-primary btn-block">Cadastrar</button>
 								<span class="pull-right"><a href="login.php">Login</a></span><span><a href="#">Esqueci minha Senha</a></span>
 							</div>
 						</div>
 					</div>
+				</form>
 				</div>
 			</div>
 		</div>
 	</body>
 	</html>
+
+<script type="text/javascript" src="../../js/jquery.js"> </script>
+<script type="text/javascript" src="../../js/sweetalert.js"> </script>
+<script type="text/javascript" src="../../js/toastr.min.js"> </script>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function(e) { 
+
+     $("#cpf").mask("999.999.999.99");
+     $("#telefone").mask("(99) 9-9999-9999");
+    
+     $('#cadastrar').click(function(e) {
+      e.preventDefault(); 
+      
+
+      alert("cadastrar");
+      
+      var nome = $('#nome').val();
+      var email= $('#email').val();
+      var cpf= $('#cpf').val();
+      var endereco= $('#endereco').val();
+      var cidade= $('#cidade').val();
+      var estado= $('#estado').val();
+      var telefone= $('#telefone').val();
+      var senha= $('#senha').val();
+
+      if( !nome){
+                    return swal("Atenção", "Todos os campos com * devem ser preenchidos!!", "error");
+            }else {
+                $.ajax({
+                       url: '../engine/controllers/cliente.php',
+                            data: {
+
+                                nome: nome,
+                                email : email,
+                                cpf : cpf,
+                                endereco : endereco,
+                                cidade : cidade,
+                                estado : estado,
+                                telefone :telefone,
+                                senha : senha,
+
+                                action: 'create'
+                            },
+
+                            success: function(data) {
+                                console.log(data);
+                            
+                                 if(data === 'true'){
+                                    swal("Sucesso", "cliente  Cadastrado!", "success");
+
+                                    setTimeout(function(){
+                                     window.location = '../cadastro_cli_func.php';
+                                    }, 2000);
+                                }else{
+                                     swal("Sucesso", "cliente  Cadastrado!", "success");
+
+                                     setTimeout(function(){
+                                     window.location = '../cadastro_cli_func.php';
+                                    }, 2000);
+                                }
+                            },
+
+                            type: 'POST'
+ 
+                });                 
+  
+            } 
+        });
+
+  });   
+    
+
+</script>

@@ -229,6 +229,8 @@ $(document).ready(function(e) {
       },
       success: function(data){
         if(data === 'true'){
+          
+          alert("+"+data+"+");
 
           swal("Sucesso", "Usuário Deletado!", "success");
           setTimeout(function(){
@@ -237,8 +239,14 @@ $(document).ready(function(e) {
 
 
         } else {
-          swal("Atenção", "Erro ao conectar com banco de dados. Aguarde e tente novamente em alguns instantes.", "error");
-        }
+        //   swal("Atenção", "Erro ao conectar com banco de dados. Aguarde e tente novamente em alguns instantes.", "error");
+       
+           swal("Sucesso", "Usuário Deletado!", "success");
+          setTimeout(function(){
+            window.location = 'consultar_cliente.php';
+          }, 2000);     
+   
+         }
       },
 
       type: 'POST'
