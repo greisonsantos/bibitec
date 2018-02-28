@@ -9,9 +9,9 @@
 </head>
 </head>
 <body>
-<br><br><br><br><br>
+ <br><br><br><br><br>
     <div class="modal-dialog">
-    <br><br><br><br><br>
+    <br><br><br><br>
     <div class="modal-content login-box ">
         <div class="modal-header">
 
@@ -28,8 +28,8 @@
 
              <div class="form-group">
                  <input type="submit" class="btn btn-block btn-lg btn-primary" id="logar" value="Login"/>
-
-                <!--  <span class="pull-right"><a href="cadastro.php">Cadastrar</a></span><span><a href="#">Esqueci Minha Senha</a></span> -->
+             <br>
+                <span class="pull-right"><a href="cadastro.php">Cadastrar</a></span> <span><a href="../../index.html">Voltar ao Site</a></span> 
              </div>
          </div>
     </div>
@@ -65,6 +65,7 @@ $(document).ready(function(e) {
          success: function(data) {
           console.log(data);
           if(data === 'true') {
+        
             
             toastr.info('Redirecionando...<br>&nbsp', 'Login efetuado com sucesso!', {positionClass: 'toast-top-full-width',
                 progressBar: true,
